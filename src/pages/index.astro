@@ -1,34 +1,13 @@
 ---
-import Header from '../components/Header.astro';
 import Layout from '../layouts/Layout.astro';
+
+import Hero from '../components/Hero.astro'
+import SolarMap from '../components/SolarMap.astro'
 ---
 
 <Layout>
-	<Header />
-
-	<main class="container mx-auto h-[100vh]">
-		<div class="h-full w-full flex flex-col items-center justify-center">
-			<h1 class="text-center text-8xl mb-10">Soberanía Digital</h1>
-			<div class="flex items-center justify-center gap-3 mb-10">
-				<button class="border border-black px-3 py-2 rounded-lg">Punto Digital</button>
-				<button class="border border-black px-3 py-2 rounded-lg">Hospital</button>
-				<button class="border border-black px-3 py-2 rounded-lg">Municipalidad</button>
-				<button class="border border-black px-3 py-2 rounded-lg">RSUs</button>
-				<button class="border border-black px-3 py-2 rounded-lg">Parque Municipal</button>
-			</div>
-
-			<div class="flex flex-col border border-black rounded-lg py-5 px-10">
-				<div class="flex flex-col items-center justify-center h-full">
-					<h5 class="text-3xl">Inyección en red</h5>
-					<h2 class="uppercase font-bold">Enero</h2>
-					<p class="text-xl">$2.000.000</p>
-				</div>
-				<div class="mt-30 text-center">
-					<h3>AHORRO MENSUAL</h3>
-				</div>
-			</div>
-		</div>
+	<main>
+		<Hero/>
+		<SolarMap />
 	</main>
-
-	<h1>alberti-recuerda.vercel.app</h1>
 </Layout>

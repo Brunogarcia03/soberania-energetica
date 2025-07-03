@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+@theme {
+  --font-neuton: "neuton", system-ui, sans-serif;
+  --breakpoint-smMd: 744px;
+}
+
+.neuton-light {
+  font-family: "Neuton", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.neuton-regular {
+  font-family: "Neuton", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.neuton-bold {
+  font-family: "Neuton", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+*::selection {
+  background-color: #f8dc95;
+  color: #253366;
+}
