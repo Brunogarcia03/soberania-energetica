@@ -1,8 +1,12 @@
 ---
 import videoHero from "../assets/video-hero.mp4";
+
+import { totalesJunio2025 } from "../data/junio2025";
+
+const { ingresos } = totalesJunio2025;
 ---
 
-<section class="bg-[#f8dc95] w-full h-svh">
+<section class="bg-[#f8dc95] w-full h-svh overflow-hidden">
   <div
     class="px-[0.75rem] smMd:px-[1.5rem] lg:px-[2.6875rem] pt-[63px] smMd:pt-[3.75rem] h-[calc(100%-50px)] smMd:h-[calc(100%-60px)]"
   >
@@ -21,7 +25,7 @@ import videoHero from "../assets/video-hero.mp4";
             muted></video>
         </div>
         <div
-          class="flex items-center justify-center absolute top-0 left-0 w-full h-full"
+          class="flex flex-col items-center justify-center absolute top-0 left-0 w-full h-full"
         >
           <h1
             id="title"
@@ -36,6 +40,13 @@ import videoHero from "../assets/video-hero.mp4";
               Energética
             </div>
           </h1>
+
+          <h6
+            id="sub-title"
+            class="text-[0.75rem] smMd:text-[2.75rem] lg:text-[4rem] text-[#f8dc95] font-neuton font-bold select-none opacity-0"
+          >
+            ¡{ingresos.toLocaleString("es-AR", { minimumFractionDigits: 2 })} Ahorrados!
+          </h6>
         </div>
       </div>
     </div>
@@ -66,7 +77,7 @@ import videoHero from "../assets/video-hero.mp4";
     <p
       class="pl-[0.75rem] font-bold smMd:pl-[0.375rem] text-[0.75rem] text-[#253366] uppercase font-neuton tracking-[0.0625rem]"
     >
-      Scroll to discover more
+      Bajar para más
     </p>
   </div>
 </section>
@@ -100,6 +111,10 @@ import videoHero from "../assets/video-hero.mp4";
       2
     )
     .to("#title", {
+      opacity: 1,
+      ease: "power2.out",
+    })
+    .to("#sub-title", {
       opacity: 1,
       ease: "power2.out",
     });
