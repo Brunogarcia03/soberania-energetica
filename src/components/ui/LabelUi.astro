@@ -1,0 +1,18 @@
+---
+const { letter = "A", title = "Lithium" } = Astro.props;
+---
+
+<label
+  class="flex-1 flex justify-center items-center w-full h-[40px] smMd:h-[56px] aspect-[140/40] smMd:max-w-none lg:min-w-[203px] duration-300 ease-in-out border-[1px] border-[#555555CC] hover:bg-[#f8dc95] hover:text-[#253366]"
+>
+  <p
+    class="flex-1 border-r-[1px] border-[#555555CC] text-[#253366] bg-[#FFDC8A] smMd:bg-transparent smMd:text-inherit text-center h-full grid place-items-center font-neuton font-bold w-full max-w-[40px] smMd:max-w-[56px] aspect-square lg:text-[1.375rem] lg:leading-[1.5625rem]"
+  >
+    {letter}
+  </p>
+  <p
+    class="flex-[2] px-2 font-neuton font-bold cursor-pointer text-center border-transparent border-[1px] lg:text-[1.375rem] lg:leading-[1.5625rem]"
+  >
+    {title}
+  </p>
+</label>

@@ -1,28 +1,104 @@
 ---
 import Card from "./ui/Card.astro";
 
+import Technology from "../assets/technology.mp4";
 
+import LabelUi from "../components/ui/LabelUi.astro";
 ---
 
 <section class="min-h-screen bg-[#253366] text-[#f8dc95]">
-    <div class="min-h-screen lg:border-x-[1px] lg:mx-[2.6875rem] border-[#555555CC]">
-        <div class="flex flex-col items-center">
-            <div class="w-full flex flex-col items-center px-[0.75rem] smMd:px-[1.5rem] lg:px-0 border-b-[1px] lg:border-b-0 border-[#555555CC]">
-                <div class="w-full border-x-[1px] lg:border-x-0 text-center text-balance border-[#555555CC]">
-                    <h2 class="uppercase font-neuton font-bold text-[1.75rem] smMd:text-[3.25rem] tracking-[0.125rem] smMd:tracking-[0.13rem] pt-12 smMd:pt-20">Technology</h2>
-                    <p class="pt-0.5 smMd:pt-2 pb-4 smMd:pb-8 lg:pb-12 text-sm smMd:text-[1.375rem] leading-[1.125rem] smMd:leading-6">
-                        What could be the tools for creating change in the energy industry?
-                    </p>
-                    <div class="w-full flex justify-center lg:border-b-[1px] lg:border-y-[1px] -mt-[1px] border-[#555555CC]">
-                        <div class="w-full grid grid-cols-4 smMd:flex smMd:flex-wrap smMd:justify-center px-0 smMd:px-4 gap-[0.6875rem] smMd:gap-4 pb-6 smMd:pb-12 lg:pb-0">
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div
+    class="min-h-screen lg:border-x-[1px] lg:mx-[2.6875rem] border-[#555555CC]"
+  >
+    <div class="flex flex-col items-center">
+      <div
+        class="w-full flex flex-col items-center px-[0.75rem] smMd:px-[1.5rem] lg:px-0 border-b-[1px] border-[#555555CC]"
+      >
+        <div
+          class="w-full border-x-[1px] text-center text-balance border-[#555555CC]"
+        >
+          <h2
+            class="uppercase font-neuton font-bold text-[1.75rem] smMd:text-[3.25rem] tracking-[0.125rem] smMd:tracking-[0.13rem] pt-12 smMd:pt-20"
+          >
+            Tecnología
+          </h2>
+          <p
+            class="pt-0.5 smMd:pt-2 pb-4 smMd:pb-8 lg:pb-12 text-sm smMd:text-[1.375rem] leading-[1.125rem] smMd:leading-6 font-neuton font-normal"
+          >
+            ¿Cuáles podrían ser las herramientas para crear un cambio en la
+            industria energética?
+          </p>
         </div>
+        <div
+          class="w-full flex justify-center border-t-[1px] -mt-[1px] border-[#555555CC]"
+        >
+          <div
+            class="w-full grid grid-cols-4 smMd:flex smMd:flex-wrap smMd:justify-center px-0 smMd:px-4 gap-[0.6875rem] smMd:gap-4 pb-6 smMd:pb-12 pt-6 smMd:pt-12 lg:pb-0 border-x border-[#555555CC]"
+          >
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </div>
+        </div>
+      </div>
+      <div
+        class="w-full flex flex-col items-center px-[0.75rem] smMd:px-[1.5rem] lg:px-0 border-y-[1px] border-[#555555cc] mt-4"
+      >
+        <div class="bg-[#253366]">
+          <div
+            class="mx-auto px-[1.25rem] min-[350px]:px-[1.175rem] min-[370px]:px-[1.25rem] pt-[1.5rem] pb-[56px] flex-grow flex flex-col relative max-w-[904px] border-solid smMd:pl-0 sm:border-x-[1px] smMd:pt-[2rem] smMd:pb-[2.5625rem] lg:pt-[3.5rem] lg:pb-[5rem] border-[#555555cc]"
+          >
+            <div class="flex items-start smMd:items-center lg:items-start">
+              <div class="relative">
+                <div class="w-full h-full relative">
+                  <video
+                    class="w-full h-full object-cover video-tech"
+                    autoplay
+                    loop
+                    playsinline
+                    src={Technology}></video>
+                </div>
+              </div>
+              <div
+                class="flex flex-col flex-[3.5] font-neuton"
+                style={{ paddingLeft: "33px", width: "calc(100% - 33px)" }}
+              >
+                <p
+                  class="text-[1.125rem] leading-[1.375rem] smMd:leading-[1.93375rem] smMd:text-[1.625rem] font-mackinac mb-[1.5rem] order-[0] font-bold"
+                >
+                  Minerals that have distinctive properties are required for
+                  renewable energy technologies. What mineral is currently
+                  <span class="text-[#CFB2FA]">not</span> used in renewable technologies?
+                </p>
+                <p
+                  class="text-[.75rem] smMd:text-[1rem] lg:mb-[1rem] font-lato text-start mb-[1.5rem] smMd:order-[-1] smMd:mb-2 lg:order-1"
+                >
+                  Select the right answer.
+                </p>
+              </div>
+            </div>
+            <div class="block pt-[1.5rem] smMd:pt-[2.5rem] smMd:pl-[1.25rem]">
+              <div
+                class="flex smMd:flex-row flex-wrap gap-4 justify-center smMd:justify-between items-center w-full justify-self-end order-2 lg:flex-nowrap"
+              >
+                <LabelUi />
+                <LabelUi />
+                <LabelUi />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <style>
+      .video-tech {
+        mask-image: url("/src/assets/images/27.png");
+        mask-repeat: no-repeat;
+        mask-position: 50% 50%;
+        mask-size: 140%;
+      }
+    </style>
+  </div>
 </section>
