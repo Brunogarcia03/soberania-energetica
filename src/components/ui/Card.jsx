@@ -1,8 +1,8 @@
 const Card = ({ image, title, place, paragraph }) => {
   return (
-    <div class="group col-span-2 bg-[#253366] hover:bg-[#FFDC8A] text-[#FFDC8A] hover:text-[#253366] smMd:max-w-[290px] border-[1px] border-[#555555CC] -mb-[1px] -mx-[1px] smMd:mx-0 transition-all duration-300 ease-in-out hover:scale-110 z-50">
+    <div class="group w-full bg-[#253366] hover:bg-[#FFDC8A] text-[#FFDC8A] hover:text-[#253366] smMd:max-w-[290px] border-[1px] border-[#555555CC] -mb-[1px] -mx-[1px] smMd:mx-0 transition-all duration-300 ease-in-out hover:scale-110">
       <div class="w-full h-full flex flex-col items-center flex-grow">
-        <div class="relative w-full flex flex-col items-center">
+        <div class="relative w-full flex flex-col items-center overflow-hidden">
           <div class="absolute top-0 left-0 bg-[#253366] group-hover:bg-[#FFDC8A] text-[#FFDC8A] group-hover:text-[#253366] text-xs px-[0.53125rem] py-[0.15625rem] smMd:px-2.5 smMd:py-1.5 border-b-[1px] border-r-[1px] border-[#555555CC] transition-colors duration-300 ease-in-out">
             {place}
           </div>

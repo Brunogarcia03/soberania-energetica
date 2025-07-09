@@ -1,33 +1,45 @@
 ---
-import world from "../assets/world_logo.png";
-import bbc from "../assets/bbc_logo.png";
-import logo from "../assets/logo.png";
+import MUNI from "../assets/logo.png";
+import EDEN from "../assets/EDEN-logo.png";
+import ECOPLAN from "../assets/ECOPLAN-logo.png";
+import PD from "../assets/PD-logo.png";
 ---
 
 <header
-  class="bg-[#F8DC95CC] text-bbc-blue-navy px-[0.75rem] smMd:px-[1.5rem] lg:px-[2.6875rem] w-full fixed top-0 z-50 border-b-[1px] border-[#FFFFFFB2]"
+  class="bg-[#F8DC95CC] px-[0.75rem] overflow-hidden smMd:px-[1.5rem] lg:px-[2.6875rem] w-full fixed top-0 z-50 h-[60px] border-b-[1px] border-[#FFFFFFB2]"
 >
   <div
-    class="py-[0.4375rem] smMd:px-[1rem] smMd:py-0 lg:px-[1.375rem] flex items-center justify-around border-x-[1px] border-[#FFFFFFB2]"
+    class="smMd:px-[1rem] smMd:py-0 lg:px-[1.375rem] border-x-[1px] border-[#FFFFFFB2]"
   >
-    <a class="flex items-center justify-start" href="/">
-      <img
-        class="smMd:h-[60px] smMd:w-[73px]"
-        src={world.src}
-        alt="World Energy Council"
-      />
-    </a>
-    <a class="flex items-center justify-start" href="/">
-      <img
-        class="smMd:h-[60px] smMd:w-[73px] object-contain"
-        src={logo.src}
-        alt=""
-      />
-    </a>
-    <div class="flex flex-col justify-end items-end pr-[0.563rem] smMd:pr-[0]">
-      <div class="relative h-[15px] w-[106px] smMd:h-[16px] smMd:w-[119px]">
-        <img src={bbc.src} alt="BBC StoryWorks" />
-      </div>
+    <div class="w-full flex items-center justify-around max-w-4xl mx-auto">
+      <a class="" href="/">
+        <img
+          class="h-[60px] smMd:w-[73px] object-contain"
+          src={MUNI.src}
+          alt="World Energy Council"
+        />
+      </a>
+      <a class="" href="/">
+        <img
+          class="h-[60px] smMd:w-[73px] object-contain"
+          src={EDEN.src}
+          alt=""
+        />
+      </a>
+      <a class="" href="/">
+        <img
+          class="h-[60px] smMd:w-[73px] object-contain"
+          src={ECOPLAN.src}
+          alt=""
+        />
+      </a>
+      <a class="rounded-full" href="/">
+        <img
+          class="h-[60px] smMd:w-[73px] object-cover rounded-full"
+          src={PD.src}
+          alt=""
+        />
+      </a>
     </div>
   </div>
 </header>
