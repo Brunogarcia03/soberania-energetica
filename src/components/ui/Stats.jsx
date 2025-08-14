@@ -1,4 +1,8 @@
 import Card from "./Card";
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/SplitText";
 
 import puntodigital from "../../assets/images/puntodigital.webp";
 import hospital from "../../assets/images/hospital.jpg";
@@ -9,8 +13,27 @@ import {
   totalesPorPlantaJunio2025,
 } from "../../data/junio2025";
 
+gsap.registerPlugin(SplitText);
+
 const Stats = () => {
+  const textRef = useRef(null);
   const { generacion, ingresos, capacidad } = totalesJunio2025;
+
+  useGSAP(
+    () => {
+      const split = new SplitText(textRef.current, { type: "chars" });
+      gsap.from(split.chars, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.05,
+        ease: "power3.out",
+        duration: 0.8,
+      });
+
+      return () => split.revert();
+    },
+    { scope: textRef }
+  );
 
   const Plantations = [
     {
@@ -52,38 +75,44 @@ const Stats = () => {
   ];
 
   return (
-    <div class="lg:mx-[2.6875rem] overflow-hidden border-x border-[#555555CC]">
-      <div class="flex flex-col items-center">
-        <div class="w-full flex flex-col items-center px-[0.75rem] smMd:px-[1.5rem] lg:px-0">
-          <div class="w-full text-center text-balance px-4 border-x border-[#555555CC]">
-            <h2 class="uppercase font-neuton font-bold text-[1.75rem] smMd:text-[3.25rem] tracking-[0.125rem] smMd:tracking-[0.13rem] pt-12 smMd:pt-20">
+    <div
+      id="stats"
+      className="lg:mx-[2.6875rem] overflow-hidden border-x border-[#555555CC]"
+    >
+      <div className="flex flex-col items-center">
+        <div className="w-full flex flex-col items-center px-[0.75rem] smMd:px-[1.5rem] lg:px-0">
+          <div className="w-full text-center text-balance px-4 border-x border-[#555555CC]">
+            <h2
+              ref={textRef}
+              className="uppercase font-neuton font-bold text-[1.75rem] sm:text-[2.25rem] smMd:text-[3.25rem] md:text-[3.75rem] leading-[1] tracking-[0.125rem] smMd:tracking-[0.13rem] pt-12 smMd:pt-20 pb-4 smMd:pb-5 lg:pb-6"
+            >
               Plantas Energéticas
             </h2>
-            <p class="pt-1 smMd:pt-3 pb-4 smMd:pb-8 lg:pb-12 text-sm smMd:text-[1.375rem] leading-[1.125rem] smMd:leading-6 font-neuton font-normal">
+            <p className="pt-1 smMd:pt-3 pb-4 smMd:pb-8 lg:pb-12 md:max-w-lg mx-auto text-sm smMd:text-[1.375rem] md:text-[1.75rem] leading-[1.125rem] smMd:leading-[1.75rem] font-neuton font-normal">
               Estas son nuestras herramientas para crear un cambio en la
               industria energética
             </p>
           </div>
-          <div class="flex flex-wrap smMd:flex-row  gap-4 justify-center smMd:justify-between items-center w-full h-full justify-self-end lg:flex-nowrap pt-10 pb-12 smMd:pb-20 px-[0.75rem] smMd:px-[1.5rem] lg:px-[8rem] border-x border-[#555555CC]">
-            <label class="flex-1 flex justify-center items-center w-full h-full smMd:max-w-none lg:min-w-[203px] duration-300 ease-in-out border-[1px] border-[#555555CC] hover:bg-[#f8dc95] hover:text-[#253366] transition-transform hover:scale-110">
-              <p class="flex-1 px-4 text-[#253366] bg-[#FFDC8A] smMd:bg-transparent smMd:text-inherit text-center h-[74px] grid place-items-center font-neuton font-bold w-full">
+          <div className="flex flex-wrap smMd:flex-row  gap-4 justify-center smMd:justify-between items-center w-full h-full justify-self-end lg:flex-nowrap pt-10 pb-12 smMd:pb-20 px-[0.75rem] smMd:px-[1.5rem] lg:px-[8rem] border-x border-[#555555CC]">
+            <label className="flex-1 flex justify-center items-center w-full h-full smMd:max-w-none lg:min-w-[203px] duration-300 ease-in-out border-[1px] border-[#555555CC] hover:bg-[#f8dc95] hover:text-[#253366] transition-transform hover:scale-110">
+              <p className="flex-1 px-4 text-[#253366] bg-[#FFDC8A] smMd:bg-transparent smMd:text-inherit text-center h-[74px] grid place-items-center font-neuton font-bold w-full">
                 <strong>Ingresos totales: </strong> $
                 {ingresos.toLocaleString("es-AR", { minimumFractionDigits: 2 })}
               </p>
             </label>
-            <label class="flex-1 flex justify-center items-center w-full h-full smMd:max-w-none lg:min-w-[203px] duration-300 ease-in-out border-[1px] border-[#555555CC] hover:bg-[#f8dc95] hover:text-[#253366] transition-transform hover:scale-110">
-              <p class="flex-1 px-4 text-[#253366] bg-[#FFDC8A] smMd:bg-transparent smMd:text-inherit text-center h-[74px] grid place-items-center font-neuton font-bold w-full">
+            <label className="flex-1 flex justify-center items-center w-full h-full smMd:max-w-none lg:min-w-[203px] duration-300 ease-in-out border-[1px] border-[#555555CC] hover:bg-[#f8dc95] hover:text-[#253366] transition-transform hover:scale-110">
+              <p className="flex-1 px-4 text-[#253366] bg-[#FFDC8A] smMd:bg-transparent smMd:text-inherit text-center h-[74px] grid place-items-center font-neuton font-bold w-full">
                 <strong>Generación total: </strong> {generacion.toFixed(1)}kWh
               </p>
             </label>
-            <label class="flex-1 flex justify-center items-center w-full h-full smMd:max-w-none lg:min-w-[203px] duration-300 ease-in-out border-[1px] border-[#555555CC] hover:bg-[#f8dc95] hover:text-[#253366] transition-transform hover:scale-110">
-              <p class="flex-1 px-4 text-[#253366] bg-[#FFDC8A] smMd:bg-transparent smMd:text-inherit text-center h-[74px] grid place-items-center font-neuton font-bold w-full">
+            <label className="flex-1 flex justify-center items-center w-full h-full smMd:max-w-none lg:min-w-[203px] duration-300 ease-in-out border-[1px] border-[#555555CC] hover:bg-[#f8dc95] hover:text-[#253366] transition-transform hover:scale-110">
+              <p className="flex-1 px-4 text-[#253366] bg-[#FFDC8A] smMd:bg-transparent smMd:text-inherit text-center h-[74px] grid place-items-center font-neuton font-bold w-full">
                 <strong>Capacidad instalada: </strong> {capacidad}kW
               </p>
             </label>
           </div>
-          <div class="w-full flex flex-col justify-center gap-4">
-            <div class="w-full flex flex-wrap sm:flex-row sm:justify-center px-4 gap-4 pb-6 smMd:pb-12 lg:pb-20 border-x border-[#555555CC]">
+          <div className="w-full flex flex-col justify-center gap-4">
+            <div className="w-full flex flex-wrap sm:flex-row sm:justify-center px-4 gap-4 pb-6 smMd:pb-12 lg:pb-20 border-x border-[#555555CC]">
               {Plantations.map((plant, i) => (
                 <Card
                   key={i}

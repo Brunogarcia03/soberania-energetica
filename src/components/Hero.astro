@@ -1,6 +1,4 @@
 ---
-import videoHero from "../assets/video-hero.mp4";
-
 import { totalesJunio2025 } from "../data/junio2025";
 
 const { ingresos } = totalesJunio2025;
@@ -8,9 +6,9 @@ const { ingresos } = totalesJunio2025;
 
 <section class="bg-[#f8dc95] w-full h-svh overflow-hidden">
   <div
-    class="px-[0.75rem] smMd:px-[1.5rem] lg:px-[2.6875rem] pt-[63px] smMd:pt-[3.75rem] h-[calc(100%-50px)] smMd:h-[calc(100%-60px)]"
+    class="px-[0.75rem] smMd:px-[1.5rem] lg:px-[2.6875rem] pt-[80px] smMd:pt-[3.75rem] lg:pt-[5rem] h-[calc(100vh-80px)] smMd:h-[calc(100vh-3.75rem)] lg:h-[calc(100vh-5rem)]"
   >
-    <div class="border-[#FFFFFFB2] border-x-[1px] relative h-[100%]">
+    <div class="border-[#FFFFFFB2] border-x-[1px] pt-[0px] relative h-[100%]">
       <div class="relative w-full h-full overflow-hidden">
         <div
           id="video-hero"
@@ -18,7 +16,7 @@ const { ingresos } = totalesJunio2025;
         >
           <video
             class="w-full h-full object-cover video-mask"
-            src={videoHero}
+            src={"https://videos.pexels.com/video-files/7038597/7038597-uhd_2732_1318_30fps.mp4"}
             loop
             autoplay
             playsinline
@@ -29,7 +27,7 @@ const { ingresos } = totalesJunio2025;
         >
           <h1
             id="title"
-            class="text-[2.75rem] smMd:text-[5.75rem] lg:text-[7rem] text-[#f8dc95] font-neuton font-bold select-none opacity-0"
+            class="text-[2.75rem] smMd:text-[4.75rem] lg:text-[6rem] text-[#f8dc95] font-neuton font-bold select-none opacity-0"
           >
             <span class="tracking-[-0.11rem] smMd:tracking-[-0.23rem]">
               Soberanía
@@ -55,11 +53,11 @@ const { ingresos } = totalesJunio2025;
     class="flex items-center justify-center py-[0.875rem] smMd:py-[1.055rem] border-t-[1px] border-[#FFFFFFB2] relative"
   >
     <div
-      class="smMd:h-[100%] absolute left-[0.75rem] smMd:left-[1.5rem] lg:left-[2.6875rem] w-[1px] bg-[#FFFFFFB2]"
+      class="h-[200%] absolute left-[0.75rem] smMd:left-[1.5rem] lg:left-[2.6875rem] w-[1px] bg-[#FFFFFFB2]"
     >
     </div>
     <div
-      class="smMd:h-[100%] absolute right-[0.75rem] smMd:right-[1.5rem] lg:right-[2.6875rem] w-[1px] bg-[#FFFFFFB2]"
+      class="h-[200%] absolute right-[0.75rem] smMd:right-[1.5rem] lg:right-[2.6875rem] w-[1px] bg-[#FFFFFFB2]"
     >
     </div>
 
