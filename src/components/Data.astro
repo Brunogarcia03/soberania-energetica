@@ -1,0 +1,152 @@
+---
+const energiaAhorradaKWh = 1000000;
+
+const CO2_POR_KWH = 0.85; // libras de CO₂ evitadas por kWh (≈0.385 kg)
+const LIBRAS_POR_ARBOL = 56; // libras de CO₂ absorbidas por un árbol joven en 10 años
+const KG_POR_LIBRA = 0.453592;
+
+const librasCO2 = energiaAhorradaKWh * CO2_POR_KWH;
+const kgCO2 = librasCO2 * KG_POR_LIBRA;
+const arboles = Math.round(librasCO2 / LIBRAS_POR_ARBOL);
+const autosFuera = Math.round(kgCO2 / 4100); // promedio de 4,1 toneladas CO₂/año por auto
+const hogaresSuministrados = Math.round(energiaAhorradaKWh / 10600); // consumo promedio hogar argentino
+---
+
+<div
+  class="w-full flex flex-col items-center justify-center px-3 md:px-6 lg:px-0 border-y lg:border-y-0 mt-8 md:mt-12 border-[#D3D3D380]"
+>
+  <div class="h-px w-[89px] hidden md:block md:mt-11.5 bg-[#D3D3D380]"></div>
+  <h2
+    class="font-neuton font-bold text-center text-white uppercase pt-12 md:pt-5.75 text-[1rem] md:text-[1.375rem] pb-3 md:pb-3.25 tracking-[0.1875rem] md:tracking-[0.154375rem] leading-[1.63625rem]"
+  >
+    Datos Clave sobre el Ahorro
+  </h2>
+  <p
+    class="font-neuton font-normal max-w-[780px] text-center text-white text-[1rem] px-5 pb-5 leading-5 tracking-[0.02rem] md:text-[1.1875rem] md:leading-6.25 md:tracking-[0.02375rem] md:px-11.75 lg:px-4.5"
+  >
+    1.000.000 kWh generados este mes de forma sostenible
+  </p>
+  <div
+    id="datos-ahorro"
+    class="w-full border-x lg:border-x-0 border-[#D3D3D380] mt-3.5 md:mt-6"
+  >
+    <div class="border-t lg:border-y border-[#D3D3D380]">
+      <div
+        class="mx-auto px-5 min-[350px]:px-[1.175rem] min-[370px]:px-5 py-6 grow flex flex-col relative max-w-5xl border-solid md:border-x md:py-8 lg:py-14 text-white border-[#D3D3D380]"
+      >
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 justify-items-center gap-4 md:gap-8 w-full text-center"
+        >
+          <div class="stat flex flex-col items-center justify-center opacity-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#FFFFFF"
+              ><path
+                d="M200-80v-80h240v-160h-80q-83 0-141.5-58.5T160-520q0-60 33-110.5t89-73.5q9-75 65.5-125.5T480-880q76 0 132.5 50.5T678-704q56 23 89 73.5T800-520q0 83-58.5 141.5T600-320h-80v160h240v80H200Zm160-320h240q50 0 85-35t35-85q0-36-20.5-66T646-630l-42-18-6-46q-6-45-39.5-75.5T480-800q-45 0-78.5 30.5T362-694l-6 46-42 18q-33 14-53.5 44T240-520q0 50 35 85t85 35Zm120-200Z"
+              ></path></svg
+            >
+            <h3
+              class="text-[2rem] md:text-[3rem] font-neuton font-bold leading-none"
+            >
+              {arboles.toLocaleString("es-AR")}
+            </h3>
+            <p class="text-sm md:text-base mt-2 text-[#D3D3D3]">
+              árboles plantados en total
+            </p>
+          </div>
+
+          <div class="stat flex flex-col items-center justify-center opacity-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#FFFFFF"
+              ><path
+                d="M440-366q-14.45 0-24.23-9.77Q406-385.55 406-400v-160q0-14.45 9.77-24.22Q425.55-594 440-594h120q14.45 0 24.22 9.78Q594-574.45 594-560v160q0 14.45-9.78 24.23Q574.45-366 560-366H440Zm14-48h92v-132h-92v132Zm-294 48q-14.45 0-24.23-9.77Q126-385.55 126-400v-160q0-14.45 9.77-24.22Q145.55-594 160-594h120q14.45 0 24.23 9.78Q314-574.45 314-560v34h-48v-20h-92v132h92v-20h48v33.68q0 14.32-9.77 24.32-9.78 10-24.23 10H160Zm526 120v-94q0-14.45 9.78-24.23Q705.55-374 720-374h86v-52H686v-48h134q14.45 0 24.22 9.77Q854-454.45 854-440v60q0 14.45-9.78 24.23Q834.45-346 820-346h-86v52h120v48H686Z"
+              ></path></svg
+            >
+            <h3
+              class="text-[2rem] md:text-[3rem] font-neuton font-bold leading-none"
+            >
+              {kgCO2.toLocaleString("es-AR")}
+            </h3>
+            <p class="text-sm md:text-base mt-2 text-[#D3D3D3]">
+              kg de CO₂ evitados
+            </p>
+          </div>
+
+          <div class="stat flex flex-col items-center justify-center opacity-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#FFFFFF"
+              ><path
+                d="M200-204v54q0 12.75-8.62 21.37Q182.75-120 170-120h-20q-12.75 0-21.37-8.63Q120-137.25 120-150v-324l85-256q5-14 16.5-22t26.5-8h464q15 0 26.5 8t16.5 22l85 256v324q0 12.75-8.62 21.37Q822.75-120 810-120h-21q-13 0-21-8.63-8-8.62-8-21.37v-54H200Zm3-330h554l-55-166H258l-55 166Zm-23 60v210-210Zm105.76 160q23.24 0 38.74-15.75Q340-345.5 340-368q0-23.33-15.75-39.67Q308.5-424 286-424q-23.33 0-39.67 16.26Q230-391.47 230-368.24q0 23.24 16.26 38.74 16.27 15.5 39.5 15.5ZM675-314q23.33 0 39.67-15.75Q731-345.5 731-368q0-23.33-16.26-39.67Q698.47-424 675.24-424q-23.24 0-38.74 16.26-15.5 16.27-15.5 39.5 0 23.24 15.75 38.74Q652.5-314 675-314Zm-495 50h600v-210H180v210Z"
+              ></path></svg
+            >
+            <h3
+              class="text-[2rem] md:text-[3rem] font-neuton font-bold leading-none"
+            >
+              {autosFuera.toLocaleString("es-AR")}
+            </h3>
+            <p class="text-sm md:text-base mt-2 text-[#D3D3D3]">
+              autos fuera de circulación
+            </p>
+          </div>
+
+          <div class="stat flex flex-col items-center justify-center opacity-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#FFFFFF"
+              ><path
+                d="M201-160v-392L76-457l-36-47 440-336 178 136v-96h100v172l162 124-37 47-125-96v393H530v-240H430v240H201Zm60-60h109v-240h220v240h108v-378L480-765 261-598v378Zm134-350h170q0-33-25.5-54.5T480-646q-34 0-59.5 21.34T395-570Zm-25 350v-240h220v240-240H370v240Z"
+              ></path></svg
+            >
+            <h3
+              class="text-[2rem] md:text-[3rem] font-neuton font-bold leading-none"
+            >
+              {hogaresSuministrados.toLocaleString("es-AR")}
+            </h3>
+            <p class="text-sm md:text-base mt-2 text-[#D3D3D3]">
+              hogares con energía anual
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.fromTo(
+    ".stat",
+    { y: 50, opacity: 0 },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 1.2,
+      stagger: 0.25,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "#datos-ahorro",
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play reverse play reverse",
+      },
+    }
+  );
+</script>

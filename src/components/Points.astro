@@ -1,0 +1,158 @@
+---
+import Card from "./ui/Card.astro";
+
+import PuntoDigital from "../assets/images/punto_digital.jpeg";
+import Hospital from "../assets/images/hospital.jpg";
+import RSU from "../assets/images/RSU.jpg";
+import Municipalidad from "../assets/images/municipalidad.jpg";
+
+import Loop from "../assets/loop-video.mp4";
+---
+
+<section class="min-h-screen bg-[#253366] text-[#FFDC8A]">
+  <div class="min-h-screen lg:border-x lg:mx-10.75 border-[#555555CC]">
+    <div class="flex flex-col items-center">
+      {/* Puntos de Energía */}
+      <div
+        class="w-full flex flex-col items-center px-3 md:px-6 lg:px-0 border-b lg:border-b-0 border-[#555555CC]"
+      >
+        <div
+          class="flex flex-col items-center justify-center w-full border-x lg:border-x-0 text-center text-balance border-[#555555CC]"
+        >
+          <div class="h-px w-[89px] hidden md:block md:mt-11.5 bg-[#D3D3D380]">
+          </div>
+          <h2
+            class="font-neuton font-bold text-white uppercase pt-12 md:pt-5.75 text-[1rem] md:text-[1.375rem] pb-3 md:pb-3.25 tracking-[0.1875rem] md:tracking-[0.154375rem] leading-[1.63625rem]"
+          >
+            Puntos Energéticos
+          </h2>
+          <p
+            class="font-neuton font-normal max-w-[780px] text-center text-white text-[1rem] px-5 pb-5 leading-5 tracking-[0.02rem] md:text-[1.1875rem] md:leading-6.25 md:tracking-[0.02375rem] md:px-11.75 lg:px-4.5"
+          >
+            La energía está presente en cada hogar, escuela y comunidad. Cada
+            acción, cada instalación y cada tecnología suma para un futuro más
+            limpio y autónomo. Descubre cómo los proyectos locales contribuyen a
+            la soberanía energética y al cuidado del planeta.
+          </p>
+          <p
+            class="font-neuton font-normal max-w-[780px] text-center text-white text-[1rem] px-5 leading-5 tracking-[0.02rem] md:text-[1.1875rem] md:leading-6.25 md:tracking-[0.02375rem] md:px-11.75 lg:px-4.5 pb-8 md:pb-6 lg:pb-6.5"
+          >
+            Generando impacto local y global
+          </p>
+
+          <div
+            class="w-full flex justify-center lg:border-b lg:border-y border-[#555555CC]"
+          >
+            <div
+              class="w-full flex flex-wrap justify-center px-0 md:px-4 gap-2.75 md:gap-4 pb-6 md:pb-12 lg:pb-0"
+            >
+              <Card
+                nombre="Punto Digital"
+                direccion="Avenida Intendente Ruben D. Rivara y 9 de Julio"
+                descripcion="Es un programa de inclusión digital, que ofrece espacios públicos donde la comunidad puede tener acceso a las nuevas tecnologías de información y comunicación. Espacio libre y gratuito."
+                imagen={PuntoDigital.src}
+              />
+              <Card
+                nombre="Planta de Residuos Solidos Urbanos"
+                direccion="Laprida"
+                descripcion="Instalación destinada a la gestión y tratamiento de los residuos sólidos urbanos generados en la localidad, con el objetivo de minimizar su impacto ambiental y promover prácticas sostenibles."
+                imagen={RSU.src}
+              />
+              <Card
+                nombre="Hospital Municipal Nuestra Señora de La Merced"
+                direccion="José Inocencio Arias 306-348"
+                descripcion="Centro de salud público que brinda atención médica integral a la comunidad, con servicios que incluyen emergencias, consultas externas y programas de salud preventiva."
+                imagen={Hospital.src}
+              />
+              <Card
+                nombre="Municipalidad de Alberti"
+                direccion="Leandro N. Alem Y 9 de Julio"
+                descripcion="Edificio municipal, obra del arquitecto Francisco Salamone inaugurado en 1938. La obra es un ejemplo de arquitectura racionalista"
+                imagen={Municipalidad.src}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Descripción */}
+      <div
+        class="w-full flex flex-col items-center px-3 md:px-6 lg:px-0 border-y lg:border-y-0 mt-4 border-[#555555CC]"
+      >
+        <div class="w-full border-x lg:border-x-0 border-[#555555CC]">
+          <div class="lg:border-y border-[#555555CC]">
+            <div
+              class="mx-auto px-5 min-[350px]:px-[1.175rem] min-[370px]:px-5 py-6 grow flex flex-col relative max-w-[904px] border-solid md:border-x md:py-8 lg:py-14 text-[#FFDC8A] border-[#555555CC]"
+            >
+              <!-- Fila -->
+              <div
+                class="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full"
+              >
+                <!-- Ícono con video -->
+                <div
+                  class="relative shrink-0 w-20 sm:w-44 md:w-56 aspect-square overflow-hidden flex items-center justify-center"
+                >
+                  <video
+                    src={Loop}
+                    autoplay
+                    playsinline
+                    loop
+                    muted
+                    class="video w-full h-[85%] object-cover"></video>
+                </div>
+
+                <!-- Texto -->
+                <div class="flex-1">
+                  <p
+                    class="text-[1.125rem] text-center md:text-start leading-5.5 md:leading-[1.93375rem] md:text-[1.625rem] font-lato mb-0 font-medium"
+                  >
+                    Transformar la energía requiere visión, compromiso y
+                    creatividad. Los pioneros de la soberanía energética
+                    demuestran que seguridad, equidad y sostenibilidad pueden
+                    coexistir, generando beneficios tangibles para toda la
+                    comunidad.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full px-3 md:px-6 lg:px-0 border-[#555555CC]">
+        <div class="w-full border-x lg:border-x-0 border-[#555555CC]"></div>
+      </div>
+      <div
+        class="w-full px-3 md:px-6 lg:px-0 mt-4 relative border-b border-[#555555CC]"
+      >
+        <div class="w-full border-x lg:border-x-0 border-[#555555CC]"></div>
+      </div>
+      <div class="w-full px-3 md:px-6 lg:px-0">
+        <div
+          class="flex items-center justify-center w-full pb-12 pt-4 md:pb-20 md:pt-8 border-x lg:border-x-0 border-[#555555CC]"
+        >
+          <p
+            class="text-balance h-full w-full font-neuton font-normal max-w-[780px] text-center text-white text-[1rem] px-5 leading-5 tracking-[0.02rem] md:text-[1.1875rem] md:leading-6.25 md:tracking-[0.02375rem] md:px-11.75 lg:px-4.5"
+          >
+            La soberanía energética es la capacidad de una comunidad, región o
+            país para tomar sus propias decisiones sobre la generación,
+            distribución y consumo de energía, sin depender excesivamente de
+            fuentes externas. Esto implica tener control sobre los recursos
+            energéticos, la infraestructura, la tecnología y el conocimiento
+            necesarios para satisfacer sus propias necesidades de manera
+            autónoma y sostenible.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .video {
+    mask-image: url("/recycling-symbol.png");
+    mask-position: center 25%;
+    mask-repeat: no-repeat;
+    mask-size: 95% 100%;
+  }
+</style>

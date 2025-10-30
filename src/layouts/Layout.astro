@@ -1,0 +1,65 @@
+---
+import "../styles/global.css";
+
+import Header from "../components/Header.astro";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Soberanía Energética | Municipalidad de Alberti</title>
+    <meta
+      name="description"
+      content="Conocé el programa de Soberanía Energética: energía solar, sustentabilidad y desarrollo local para un futuro más limpio y autónomo."
+    />
+    <meta
+      name="keywords"
+      content="Soberanía, energética, Alberti, Energía, solar, Energías renovables, Sustentabilidad, local, Paneles solares, Medio ambiente"
+    />
+    <meta
+      property="og:title"
+      content="Municipalidad de Alberti | Sitio Oficial"
+    />
+    <meta
+      property="og:description"
+      content="Soberanía, energética, Alberti, Energía, solar, Energías renovables, Sustentabilidad, local, Paneles solares, Medio ambiente"
+    />
+    <meta property="og:image" content="/solar_panel.jpg" />
+    <meta
+      property="og:url"
+      content="https://soberania-energetica.vercel.app/"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <div
+      class="relative px-4 py-4 w-full bg-black text-white font-helvetica md:flex md:justify-between md:items-center md:px-1.75 md:py-5 lg:px-4 lg:py-4 group"
+    >
+      <div class="md:max-w-none mx-auto text-[.625rem] inline">
+        <p class="flex text-center items-center justify-center text-base gap-1">
+          <span class="font-semibold">2025</span>- Construido por<!-- -->
+          <a
+            class="ml-1 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] group-hover:after:origin-bottom-left group-hover:after:scale-x-100"
+            href="https://brunog.com.ar/"
+            target="_blank"
+          >
+            <!-- -->Bruno García</a
+          >
+        </p>
+        <p
+          class="text-[.625rem] text-center leading-3 md:leading-2.5 font-lato mt-1"
+        >
+          Copyright © 2025 Municipalidad de Alberti. Todos los derechos libres
+          de uso.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

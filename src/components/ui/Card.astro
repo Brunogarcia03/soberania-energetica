@@ -1,0 +1,56 @@
+---
+const {
+  nombre = "Argentina",
+  direccion = "Título del Proyecto",
+  descripcion = "Descripción breve del proyecto o iniciativa",
+  imagen = "https://www.bbc.com/storyworks/specials/humanising-energy/assets/images/components/promos/DThumbnail1.webp",
+} = Astro.props;
+---
+
+<div
+  class="group col-span-2 promo-item bg-[#253366] hover:bg-[#FFDC8A] text-[#FFDC8A] hover:text-[#253366] max-w-[200px] sm:max-w-[180px] md:max-w-[290px] border lg:border-y-0 border-[#555555CC] -mb-1px -mx-1px smMd:mx-0 transition-colors duration-300 ease-in-out cursor-pointer"
+>
+  <div class="w-full h-full flex flex-col items-center grow">
+    <div class="relative w-full flex flex-col items-center">
+      <p
+        class="absolute top-0 left-0 text-left bg-[#253366] group-hover:bg-[#FFDC8A] text-[#FFDC8A] group-hover:text-[#253366] text-xs px-[0.53125rem] py-[0.15625rem] smMd:px-2.5 smMd:py-1.5 border-b border-r border-[#555555CC] transition-colors duration-300 ease-in-out mr-3.5"
+      >
+        {nombre}
+      </p>
+      <img
+        class="block w-full max-h-40 object-cover"
+        src={imagen}
+        alt={`Imagen de ${nombre}`}
+      />
+      <div class="absolute bottom-0 right-0 w-6 md:w-12">
+        <div class="absolute bottom-0 left-0 h-full w-1px"></div>
+        <div class="absolute top-0 left-0 h-px w-full"></div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="32px"
+          viewBox="0 -960 960 960"
+          width="32px"
+          class="absolute transition-colors duration-300 ease-in-out right-0 bottom-0 border-t border-l border-[#555555CC] bg-[#253366] group-hover:bg-[#FFDC8A] group-hover:fill-[#253366]"
+          fill="#FFDC8A"
+          ><path
+            d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"
+          ></path></svg
+        >
+      </div>
+    </div>
+    <div
+      class="w-full flex flex-col grow items-center text-center pt-2 md:pt-3 px-0.5 gap-1 md:gap-0 border-t border-[#555555CC]"
+    >
+      <h3
+        class="font-neuton text-xs md:text-base font-medium leading-3.5 md:leading-4 px-2"
+      >
+        {direccion}
+      </h3>
+      <p
+        class="font-lato pt-0.5 md:pt-2 pb-4 text-[0.6875rem] md:text-sm leading-3.5 md:leading-4 w-full px-2"
+      >
+        {descripcion}
+      </p>
+    </div>
+  </div>
+</div>
