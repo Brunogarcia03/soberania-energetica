@@ -1,15 +1,29 @@
 ---
-const energiaAhorradaKWh = 1000000;
+const res = await fetch(
+  "https://strapi-production-4f4b.up.railway.app/api/soberania-energeticas?sort=fecha:desc"
+);
+const { data } = await res.json();
 
-const CO2_POR_KWH = 0.85; // libras de CO₂ evitadas por kWh (≈0.385 kg)
-const LIBRAS_POR_ARBOL = 56; // libras de CO₂ absorbidas por un árbol joven en 10 años
-const KG_POR_LIBRA = 0.453592;
+// Tomamos el primero (el más reciente)
+const record = data?.[0];
 
-const librasCO2 = energiaAhorradaKWh * CO2_POR_KWH;
-const kgCO2 = librasCO2 * KG_POR_LIBRA;
-const arboles = Math.round(librasCO2 / LIBRAS_POR_ARBOL);
-const autosFuera = Math.round(kgCO2 / 4100); // promedio de 4,1 toneladas CO₂/año por auto
-const hogaresSuministrados = Math.round(energiaAhorradaKWh / 10600); // consumo promedio hogar argentino
+// Datos base del caso real
+const ahorroPesos = record?.ahorro_pesos ?? 0;
+const precioKWh = 209;
+const energiaAhorradaKWh =
+  record?.energia_ahorrada_kwh ?? ahorroPesos / precioKWh; // ≈ 11056.6 kWh
+
+// Factores actualizados a valores locales (Argentina)
+const KG_CO2_POR_KWH = 0.4507; // kg CO₂/kWh
+const KG_POR_ARBOL = 1.25; // kg CO₂ absorbidos por árbol/mes
+const KG_CO2_POR_AUTO = 342; // kg CO₂ emitidos por auto/mes
+const KWH_HOGAR_MES = 883; // consumo anual promedio hogar argentino
+
+// Cálculos
+const kgCO2 = energiaAhorradaKWh * KG_CO2_POR_KWH;
+const arboles = Math.round(kgCO2 / KG_POR_ARBOL);
+const autosFuera = Math.round(kgCO2 / KG_CO2_POR_AUTO);
+const hogaresSuministrados = Math.round(energiaAhorradaKWh / KWH_HOGAR_MES);
 ---
 
 <div
@@ -24,7 +38,8 @@ const hogaresSuministrados = Math.round(energiaAhorradaKWh / 10600); // consumo 
   <p
     class="font-neuton font-normal max-w-[780px] text-center text-white text-[1rem] px-5 pb-5 leading-5 tracking-[0.02rem] md:text-[1.1875rem] md:leading-6.25 md:tracking-[0.02375rem] md:px-11.75 lg:px-4.5"
   >
-    1.000.000 kWh generados este mes de forma sostenible
+    {Number(energiaAhorradaKWh.toFixed(2)).toLocaleString("es-AR")} kWh generados
+    este mes de forma sostenible
   </p>
   <div
     id="datos-ahorro"
@@ -72,7 +87,7 @@ const hogaresSuministrados = Math.round(energiaAhorradaKWh / 10600); // consumo 
             <h3
               class="text-[2rem] md:text-[3rem] font-neuton font-bold leading-none"
             >
-              {kgCO2.toLocaleString("es-AR")}
+              {Number(kgCO2.toFixed(2)).toLocaleString("es-AR")}
             </h3>
             <p class="text-sm md:text-base mt-2 text-[#D3D3D3]">
               kg de CO₂ evitados
@@ -117,7 +132,7 @@ const hogaresSuministrados = Math.round(energiaAhorradaKWh / 10600); // consumo 
               {hogaresSuministrados.toLocaleString("es-AR")}
             </h3>
             <p class="text-sm md:text-base mt-2 text-[#D3D3D3]">
-              hogares con energía anual
+              hogares con energía mensual
             </p>
           </div>
         </div>

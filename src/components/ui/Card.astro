@@ -1,5 +1,6 @@
 ---
 const {
+  href = null,
   nombre = "Argentina",
   direccion = "Título del Proyecto",
   descripcion = "Descripción breve del proyecto o iniciativa",
@@ -7,7 +8,10 @@ const {
 } = Astro.props;
 ---
 
-<div
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
   class="group col-span-2 promo-item bg-[#253366] hover:bg-[#FFDC8A] text-[#FFDC8A] hover:text-[#253366] max-w-[200px] sm:max-w-[180px] md:max-w-[290px] border lg:border-y-0 border-[#555555CC] -mb-1px -mx-1px smMd:mx-0 transition-colors duration-300 ease-in-out cursor-pointer"
 >
   <div class="w-full h-full flex flex-col items-center grow">
@@ -53,4 +57,4 @@ const {
       </p>
     </div>
   </div>
-</div>
+</a>
