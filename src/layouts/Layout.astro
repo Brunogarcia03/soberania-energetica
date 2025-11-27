@@ -2,6 +2,8 @@
 import "../styles/global.css";
 
 import Header from "../components/Header.astro";
+
+import solarPanel from "../assets/images/paneles/img (13).jpg";
 ---
 
 <!doctype html>
@@ -28,7 +30,7 @@ import Header from "../components/Header.astro";
       property="og:description"
       content="Soberanía, energética, Alberti, Energía, solar, Energías renovables, Sustentabilidad, local, Paneles solares, Medio ambiente"
     />
-    <meta property="og:image" content="/solar_panel.jpg" />
+    <meta property="og:image" content={solarPanel.src} />
     <meta
       property="og:url"
       content="https://soberania-energetica.vercel.app/"

@@ -18,13 +18,17 @@ const energiaAhorradaKWh =
   >
     <div class="border-[#FFFFFFB2] border-x relative h-full">
       <div class="relative w-full h-full overflow-hidden">
-        <video
-          class="absolute top-0 left-0 w-full h-full object-cover"
-          src="https://videos.pexels.com/video-files/9906031/9906031-uhd_2560_1440_30fps.mp4"
-          loop
-          autoplay
-          playsinline></video>
+        <img
+          id="hero-bg-1"
+          class="absolute top-0 left-0 w-full h-full object-cover opacity-100"
+        />
+
+        <img
+          id="hero-bg-2"
+          class="absolute top-0 left-0 w-full h-full object-cover opacity-0"
+        />
       </div>
+
       <div
         class="flex flex-col items-center justify-center absolute text-center top-0 left-0 w-full h-full"
       >
@@ -92,6 +96,66 @@ const energiaAhorradaKWh =
 <script>
   import { gsap } from "gsap";
   import { SplitText } from "gsap/SplitText";
+
+  import img_1 from "../assets/images/paneles/img (1).jpg";
+  import img_2 from "../assets/images/paneles/img (2).jpg";
+  import img_3 from "../assets/images/paneles/img (3).jpg";
+  import img_4 from "../assets/images/paneles/img (4).jpg";
+  import img_5 from "../assets/images/paneles/img (5).jpg";
+  import img_6 from "../assets/images/paneles/img (6).jpg";
+  import img_7 from "../assets/images/paneles/img (7).jpg";
+  import img_8 from "../assets/images/paneles/img (8).jpg";
+  import img_9 from "../assets/images/paneles/img (9).jpg";
+  import img_10 from "../assets/images/paneles/img (10).jpg";
+
+  const images = [
+    img_1.src,
+    img_2.src,
+    img_3.src,
+    img_4.src,
+    img_5.src,
+    img_6.src,
+    img_7.src,
+    img_8.src,
+    img_9.src,
+    img_10.src,
+  ];
+
+  const img1 = document.getElementById("hero-bg-1") as HTMLImageElement;
+  const img2 = document.getElementById("hero-bg-2") as HTMLImageElement;
+
+  let current = 0;
+  let showingImg1 = true;
+
+  // Imagen inicial
+  img1.src = images[current];
+
+  const changeImage = () => {
+    const next = (current + 1) % images.length;
+    const incoming = showingImg1 ? img2 : img1;
+    const outgoing = showingImg1 ? img1 : img2;
+
+    // Pre-cargamos la próxima imagen
+    incoming.src = images[next];
+
+    // Fade crossfade
+    gsap.to(incoming, {
+      opacity: 1,
+      duration: 1.8,
+      ease: "power2.out",
+    });
+
+    gsap.to(outgoing, {
+      opacity: 0,
+      duration: 1.5,
+      ease: "power2.out",
+    });
+
+    current = next;
+    showingImg1 = !showingImg1;
+  };
+
+  setInterval(changeImage, 5000);
 
   gsap.registerPlugin(SplitText);
 
