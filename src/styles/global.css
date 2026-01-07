@@ -1,22 +1,20 @@
 @import "tailwindcss";
-
-@font-face {
-  font-family: "Neuton Regular";
-  src: url("../assets/fonts/Neuton-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Lato Regular";
-  src: url("../assets/fonts/Lato-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
+@import "@fontsource/lato/400.css";
+@import "@fontsource/neuton/400.css";
 
 @theme {
-  --font-neuton: "Neuton Regular", sans-serif;
-  --font-lato: "Lato Regular", sans-serif;
+  --font-sans: "Lato", system-ui, sans-serif;
+  --font-serif: "Neuton", serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
 }
 
 @layer components {

@@ -1,7 +1,38 @@
 ---
+import img_1 from "../assets/images/paneles/img (1).webp";
+import img_2 from "../assets/images/paneles/img (2).webp";
+import img_3 from "../assets/images/paneles/img (3).webp";
+import img_4 from "../assets/images/paneles/img (4).webp";
+import img_5 from "../assets/images/paneles/img (5).webp";
+import img_6 from "../assets/images/paneles/img (6).webp";
+import img_7 from "../assets/images/paneles/img (7).webp";
+import img_8 from "../assets/images/paneles/img (8).webp";
+import img_9 from "../assets/images/paneles/img (9).webp";
+import img_10 from "../assets/images/paneles/img (10).webp";
+
+const images = [
+  img_1.src,
+  img_2.src,
+  img_3.src,
+  img_4.src,
+  img_5.src,
+  img_6.src,
+  img_7.src,
+  img_8.src,
+  img_9.src,
+  img_10.src,
+];
+
 const res = await fetch(
-  "https://strapi-production-4f4b.up.railway.app/api/soberania-energeticas?sort=fecha:desc"
+  "https://strapi-production-4f4b.up.railway.app/api/soberania-energeticas?sort=fecha:desc",
+  {
+    headers: {
+      Accept: "application/json",
+    },
+    cache: "force-cache",
+  }
 );
+
 const { data } = await res.json();
 
 const record = data?.[0];
@@ -12,55 +43,63 @@ const energiaAhorradaKWh =
   record?.energia_ahorrada_kwh ?? ahorroPesos / precioKWh;
 ---
 
-<section class="h-svh bg-[#ffdc8a]">
+<section class="relative h-svh bg-[#ffdc8a]">
   <div
     class="px-3 md:px-6 lg:px-10.75 pt-[60px] h-[calc(100%-50px)] md:h-[calc(100%-60px)]"
   >
     <div class="border-[#FFFFFFB2] border-x relative h-full">
       <div class="relative w-full h-full overflow-hidden">
-        <img
-          id="hero-bg-1"
-          class="absolute top-0 left-0 w-full h-full object-cover opacity-100"
-        />
-
-        <img
-          id="hero-bg-2"
-          class="absolute top-0 left-0 w-full h-full object-cover opacity-0"
-        />
+        {
+          images.map((src, index) => (
+            <img
+              src={src}
+              id={`img-${index}`}
+              class={`hero-img absolute inset-0 w-full h-full object-cover ${
+                index === 0 ? "opacity-100" : "opacity-0"
+              }`}
+              style="will-change: clip-path, opacity;"
+              alt="Imagen del Hero"
+              fetchpriority="high"
+              decoding="async"
+            />
+          ))
+        }
       </div>
 
       <div
-        class="flex flex-col items-center justify-center absolute text-center top-0 left-0 w-full h-full"
+        class="absolute flex flex-col items-center justify-center text-center top-0 left-0 w-full h-full z-999"
       >
         <h1
           class="text-[2.75rem] sm:text-[3.25rem] md:text-[6.75rem] text-[#ffdc8a] font-lato font-bold select-none overflow-y-hidden"
         >
           <span
-            class="inline-block leading-none sm:leading-0 tracking-[-0.11rem] md:tracking-[-0.23rem]"
+            class="inline-block leading-none sm:leading-0 tracking-[-0.11rem] md:tracking-[-0.23rem] text-shadow-md text-shadow-[#253366]"
             >Municipalidad de Alberti
           </span>
         </h1>
 
-        <p
-          class="text-[2rem] sm:text-[2.25rem] md:text-[4.75rem] text-[#ffdc8a] font-neuton font-semibold select-none overflow-y-hidden mt-4 md:mt-0"
+        <h3
+          class="text-[2rem] sm:text-[2.25rem] md:text-[4.75rem] text-[#ffdc8a] text-shadow-sm text-shadow-[#253366] font-neuton font-semibold select-none overflow-y-hidden mt-4 md:mt-0"
         >
           Soberanía Energética
-        </p>
-        <h5
+        </h3>
+        <p
           class="text-[1.25rem] md:text-[2.75rem] text-[#ffdc8a] font-lato font-semibold select-none max-w-2xl mt-8 overflow-y-hidden text-left"
         >
-          <span
-            >- Generamos {
-              Number(energiaAhorradaKWh.toFixed(2)).toLocaleString("es-AR")
-            } kWh</span
-          >
+          <span class="block text-shadow-xs text-shadow-[#253366]">
+            – Generamos
+            <strong>
+              {Number(energiaAhorradaKWh.toFixed(2)).toLocaleString("es-AR")} kWh
+            </strong>
+          </span>
 
-          <span class="block"
-            >- Ahorramos ${
-              Number(ahorroPesos.toFixed(2)).toLocaleString("es-AR")
-            }</span
-          >
-        </h5>
+          <span class="block mt-2 text-shadow-xs text-shadow-[#253366]">
+            – Ahorramos
+            <strong>
+              ${Number(ahorroPesos.toFixed(2)).toLocaleString("es-AR")}
+            </strong>
+          </span>
+        </p>
       </div>
     </div>
   </div>
@@ -97,70 +136,15 @@ const energiaAhorradaKWh =
   import { gsap } from "gsap";
   import { SplitText } from "gsap/SplitText";
 
-  import img_1 from "../assets/images/paneles/img (1).jpg";
-  import img_2 from "../assets/images/paneles/img (2).jpg";
-  import img_3 from "../assets/images/paneles/img (3).jpg";
-  import img_4 from "../assets/images/paneles/img (4).jpg";
-  import img_5 from "../assets/images/paneles/img (5).jpg";
-  import img_6 from "../assets/images/paneles/img (6).jpg";
-  import img_7 from "../assets/images/paneles/img (7).jpg";
-  import img_8 from "../assets/images/paneles/img (8).jpg";
-  import img_9 from "../assets/images/paneles/img (9).jpg";
-  import img_10 from "../assets/images/paneles/img (10).jpg";
-
-  const images = [
-    img_1.src,
-    img_2.src,
-    img_3.src,
-    img_4.src,
-    img_5.src,
-    img_6.src,
-    img_7.src,
-    img_8.src,
-    img_9.src,
-    img_10.src,
-  ];
-
-  const img1 = document.getElementById("hero-bg-1") as HTMLImageElement;
-  const img2 = document.getElementById("hero-bg-2") as HTMLImageElement;
-
-  let current = 0;
-  let showingImg1 = true;
-
-  // Imagen inicial
-  img1.src = images[current];
-
-  const changeImage = () => {
-    const next = (current + 1) % images.length;
-    const incoming = showingImg1 ? img2 : img1;
-    const outgoing = showingImg1 ? img1 : img2;
-
-    // Pre-cargamos la próxima imagen
-    incoming.src = images[next];
-
-    // Fade crossfade
-    gsap.to(incoming, {
-      opacity: 1,
-      duration: 1.8,
-      ease: "power2.out",
-    });
-
-    gsap.to(outgoing, {
-      opacity: 0,
-      duration: 1.5,
-      ease: "power2.out",
-    });
-
-    current = next;
-    showingImg1 = !showingImg1;
-  };
-
-  setInterval(changeImage, 5000);
-
   gsap.registerPlugin(SplitText);
 
-  let typeSplit = new SplitText(".title-1", { type: "chars" });
+  let typeSplit: any;
+  let typeSplit2: any;
+  let subtitleSplit: any;
 
+  typeSplit = new SplitText(".title-1", { type: "chars" });
+  typeSplit2 = new SplitText(".title-2", { type: "chars" });
+  subtitleSplit = new SplitText(".subtitle", { type: "words" });
   gsap.from(typeSplit.chars, {
     y: "100%",
     opacity: 0,
@@ -169,9 +153,7 @@ const energiaAhorradaKWh =
     stagger: 0.1,
   });
 
-  let typeSplit_2 = new SplitText(".title-2", { type: "chars" });
-
-  gsap.from(typeSplit_2.chars, {
+  gsap.from(typeSplit2.chars, {
     y: "100%",
     opacity: 0,
     duration: 1,
@@ -179,8 +161,6 @@ const energiaAhorradaKWh =
     delay: 0.5,
     stagger: 0.1,
   });
-
-  let subtitleSplit = new SplitText(".subtitle", { type: "words" });
 
   gsap.from(subtitleSplit.words, {
     y: "100%",
@@ -190,4 +170,47 @@ const energiaAhorradaKWh =
     delay: 2,
     stagger: 0.1,
   });
+
+  let current = 0;
+  let imagesEls: any[] = [];
+
+  imagesEls = Array.from(document.querySelectorAll(".hero-img"));
+
+  gsap.set(imagesEls, {
+    opacity: 0,
+    clipPath: "inset(0 0% 0 0)",
+  });
+
+  gsap.set(imagesEls[0], {
+    opacity: 1,
+  });
+
+  setInterval(crossfade, 5000);
+
+  function crossfade() {
+    const next = (current + 1) % imagesEls.length;
+
+    gsap.set(imagesEls[next], {
+      opacity: 1,
+      clipPath: "inset(0 100% 0 0)",
+      zIndex: 2,
+    });
+
+    gsap.to(imagesEls[next], {
+      clipPath: "inset(0 0% 0 0)",
+      duration: 2,
+      ease: "power4.out",
+    });
+
+    gsap.to(imagesEls[current], {
+      opacity: 0,
+      duration: 0.3,
+      delay: 1.2,
+      onComplete: () => {
+        gsap.set(imagesEls[current], { zIndex: 1 });
+      },
+    });
+
+    current = next;
+  }
 </script>
