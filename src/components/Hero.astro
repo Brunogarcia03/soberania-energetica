@@ -11,16 +11,16 @@ import img_9 from "../assets/images/paneles/img (9).webp";
 import img_10 from "../assets/images/paneles/img (10).webp";
 
 const images = [
-  img_1.src,
-  img_2.src,
-  img_3.src,
-  img_4.src,
-  img_5.src,
-  img_6.src,
-  img_7.src,
-  img_8.src,
-  img_9.src,
-  img_10.src,
+  img_1,
+  img_2,
+  img_3,
+  img_4,
+  img_5,
+  img_6,
+  img_7,
+  img_8,
+  img_9,
+  img_10,
 ];
 
 const res = await fetch(
@@ -50,17 +50,17 @@ const energiaAhorradaKWh =
     <div class="border-[#FFFFFFB2] border-x relative h-full">
       <div class="relative w-full h-full overflow-hidden">
         {
-          images.map((src, index) => (
+          images.map((image, index) => (
             <img
-              src={src}
-              id={`img-${index}`}
-              class={`hero-img absolute inset-0 w-full h-full object-cover ${
-                index === 0 ? "opacity-100" : "opacity-0"
-              }`}
-              style="will-change: clip-path, opacity;"
+              src={image.src}
+              sizes="(max-width: 768px) 100vw, 1247px"
+              width={image.width}
+              height={image.height}
               alt="Imagen del Hero"
-              fetchpriority="high"
+              loading="lazy"
               decoding="async"
+              aria-hidden="true"
+              class="hero-img absolute inset-0 w-full h-full object-cover"
             />
           ))
         }
@@ -78,30 +78,36 @@ const energiaAhorradaKWh =
           </span>
         </h1>
 
-        <h3
-          class="title-2 text-[2rem] sm:text-[2.25rem] md:text-[4.75rem] text-[#ffdc8a] text-shadow-sm text-shadow-[#253366] font-neuton font-semibold select-none overflow-y-hidden mt-4 md:mt-0"
-        >
-          Soberanía Energética
-        </h3>
-        <p
-          class="text-[1.25rem] md:text-[2.75rem] text-[#ffdc8a] font-lato font-semibold select-none max-w-2xl mt-8 overflow-y-hidden text-left"
-        >
-          <span class="subtitle block text-shadow-xs text-shadow-[#253366]">
-            – Generamos
-            <strong>
-              {Number(energiaAhorradaKWh.toFixed(2)).toLocaleString("es-AR")} kWh
-            </strong>
-          </span>
-
-          <span
-            class="subtitle block mt-2 text-shadow-xs text-shadow-[#253366]"
+        <div class="flex flex-col items-center justify-center w-full">
+          <h3
+            class="title-2 text-[2rem] sm:text-[2.25rem] md:text-[4.75rem] text-[#ffdc8a] text-shadow-sm text-shadow-[#253366] font-neuton font-semibold select-none overflow-y-hidden mt-4 md:mt-0"
           >
-            – Ahorramos
-            <strong>
-              ${Number(ahorroPesos.toFixed(2)).toLocaleString("es-AR")}
-            </strong>
-          </span>
-        </p>
+            Soberanía Energética
+          </h3>
+          <p
+            class="text-[1.25rem] md:text-[2.75rem] text-[#ffdc8a] font-lato font-semibold select-none max-w-2xl mt-8 overflow-y-hidden text-left"
+          >
+            <span
+              aria-label={`Generamos: ${Number(energiaAhorradaKWh.toFixed(2)).toLocaleString("es-AR")} kWh`}
+              class="subtitle block text-shadow-xs text-shadow-[#253366]"
+            >
+              – Generamos
+              <strong>
+                {Number(energiaAhorradaKWh.toFixed(2)).toLocaleString("es-AR")} kWh
+              </strong>
+            </span>
+
+            <span
+              aria-label={`Ahorramos: $${Number(ahorroPesos.toFixed(2)).toLocaleString("es-AR")}`}
+              class="subtitle block mt-2 text-shadow-xs text-shadow-[#253366]"
+            >
+              – Ahorramos
+              <strong>
+                ${Number(ahorroPesos.toFixed(2)).toLocaleString("es-AR")}
+              </strong>
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
