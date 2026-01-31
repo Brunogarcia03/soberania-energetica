@@ -1,4 +1,6 @@
 ---
+import Image from "astro/components/Image.astro";
+
 const {
   href = null,
   nombre = "Argentina",
@@ -21,11 +23,18 @@ const {
       >
         {nombre}
       </p>
-      <img
-        class="block w-full min-h-40 max-h-40 object-cover"
+      <Image
         src={imagen}
         alt={`Imagen de ${nombre}`}
+        width={230}
+        height={160}
+        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 180px, 230px"
+        format="webp"
+        loading="lazy"
+        decoding="async"
+        class="block w-full min-h-40 max-h-40 object-cover"
       />
+
       <div class="absolute bottom-0 right-0 w-6 md:w-12">
         <div class="absolute bottom-0 left-0 h-full w-1px"></div>
         <div class="absolute top-0 left-0 h-px w-full"></div>

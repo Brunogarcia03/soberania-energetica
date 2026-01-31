@@ -9,6 +9,7 @@ import img_7 from "../assets/images/paneles/img (7).webp";
 import img_8 from "../assets/images/paneles/img (8).webp";
 import img_9 from "../assets/images/paneles/img (9).webp";
 import img_10 from "../assets/images/paneles/img (10).webp";
+import Image from "astro/components/Image.astro";
 
 const images = [
   img_1,
@@ -30,7 +31,7 @@ const res = await fetch(
       Accept: "application/json",
     },
     cache: "force-cache",
-  }
+  },
 );
 
 const { data } = await res.json();
@@ -51,15 +52,14 @@ const energiaAhorradaKWh =
       <div class="relative w-full h-full overflow-hidden">
         {
           images.map((image, index) => (
-            <img
-              src={image.src}
+            <Image
+              src={image}
+              alt={`Imagen de paneles solares n°${index + 1}`}
+              widths={[640, 1024, 1280, 1600]}
               sizes="(max-width: 768px) 100vw, 1247px"
-              width={image.width}
-              height={image.height}
-              alt="Imagen del Hero"
-              loading="lazy"
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchpriority={index === 0 ? "high" : "auto"}
               decoding="async"
-              aria-hidden="true"
               class="hero-img absolute inset-0 w-full h-full object-cover"
             />
           ))
@@ -139,6 +139,16 @@ const energiaAhorradaKWh =
     </p>
   </div>
 </section>
+
+<style>
+  .hero-img {
+    opacity: 0;
+  }
+
+  .hero-img:first-child {
+    opacity: 1;
+  }
+</style>
 
 <script>
   import { gsap } from "gsap";

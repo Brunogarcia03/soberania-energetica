@@ -1,8 +1,9 @@
 ---
-import MuniLogo from "../assets/images/ICON.png";
-import EdenLogo from "../assets/images/EdenMini.png";
-import EcoplanLogo from "../assets/images/Ecoplan.png";
-import PuntoLogo from "../assets/images/Punto.jpg";
+import MuniLogo from "../assets/images/ICON.webp";
+import EdenLogo from "../assets/images/EdenMini.webp";
+import EcoplanLogo from "../assets/images/Ecoplan.webp";
+import PuntoLogo from "../assets/images/Punto.webp";
+import Image from "astro/components/Image.astro";
 ---
 
 <nav
@@ -16,13 +17,17 @@ import PuntoLogo from "../assets/images/Punto.jpg";
         class="flex items-center select-none"
         href="/https://www.instagram.com/municipalidaddealberti/"
       >
-        <img
-          src={MuniLogo.src}
-          width="33"
-          height="46"
+        <Image
+          src={MuniLogo}
           alt="Logo Municipalidad de Alberti"
+          width={33}
+          height={46}
+          format="webp"
+          quality={80}
+          loading="eager"
           decoding="async"
         />
+
         <h1
           id="text-icon"
           class="font-lato font-bold hidden md:block md:text-[1rem] leading-none ml-1 transition-colors duration-300"
@@ -34,30 +39,46 @@ import PuntoLogo from "../assets/images/Punto.jpg";
         class="flex items-center select-none"
         href="https://www.edensa.com.ar/"
       >
-        <img
-          src={EdenLogo.src}
+        <Image
+          src={EdenLogo}
           alt="Logo Eden"
-          class="h-10 md:h-[46px] scale-90 object-cover"
+          height={46}
+          widths={[46, 92]}
+          sizes="46px"
+          format="webp"
+          quality={80}
+          decoding="async"
         />
       </a>
       <a
         class="flex items-center select-none"
         href="https://www.instagram.com/ecoplan.alberti/"
       >
-        <img
-          src={EcoplanLogo.src}
-          alt="Logo Ecoplan "
-          class="h-10 md:h-[46px] object-contain"
+        <Image
+          src={EcoplanLogo}
+          alt="Logo Ecoplan"
+          height={46}
+          widths={[46, 92]}
+          sizes="46px"
+          format="webp"
+          quality={80}
+          decoding="async"
         />
       </a>
       <a
         class="flex items-center select-none"
         href="https://www.instagram.com/puntodigitalalberti/"
       >
-        <img
-          src={PuntoLogo.src}
+        <Image
+          src={PuntoLogo}
           alt="Logo Punto Digital"
-          class="h-10 md:h-[46px] object-cover rounded-full"
+          height={46}
+          widths={[46, 92]}
+          sizes="46px"
+          format="webp"
+          quality={80}
+          decoding="async"
+          class="rounded-full"
         />
       </a>
     </div>
