@@ -24,19 +24,39 @@ const images = [
   img_10,
 ];
 
+type SoberaniaEnergetica = {
+  id: number;
+  documentId: string;
+  fecha: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  energia_ahorrada_kwh: number;
+  ahorro_pesos: number;
+};
+
 const res = await fetch(
   "https://strapi-production-4f4b.up.railway.app/api/soberania-energeticas?sort=fecha:desc",
   {
-    headers: {
-      Accept: "application/json",
-    },
+    headers: { Accept: "application/json" },
     cache: "force-cache",
   },
 );
 
-const { data } = await res.json();
+const { data } = (await res.json()) as {
+  data: SoberaniaEnergetica[];
+};
 
-const record = data?.[0];
+const { totalAhorro, totalEnergia } = data.reduce(
+  (acc, el) => {
+    acc.totalAhorro += el.ahorro_pesos;
+    acc.totalEnergia += el.energia_ahorrada_kwh;
+    return acc;
+  },
+  { totalAhorro: 0, totalEnergia: 0 },
+);
+
+const record = data[0];
 
 const ahorroPesos = record?.ahorro_pesos ?? 0;
 const precioKWh = 209;
@@ -48,7 +68,9 @@ const energiaAhorradaKWh =
   <div
     class="px-3 md:px-6 lg:px-10.75 pt-[60px] h-[calc(100%-50px)] md:h-[calc(100%-60px)]"
   >
-    <div class="border-[#FFFFFFB2] border-x relative h-full z-200">
+    <div
+      class="border-[#FFFFFFB2] border-x relative h-full overflow-hidden z-200"
+    >
       <div class="relative w-full h-full overflow-hidden">
         {
           images.map((image, index) => (
@@ -64,6 +86,7 @@ const energiaAhorradaKWh =
             />
           ))
         }
+        <div class="absolute inset-0 w-full h-full z-20 bg-black/20"></div>
       </div>
 
       <div
@@ -88,22 +111,22 @@ const energiaAhorradaKWh =
             class="text-[1.25rem] md:text-[2.75rem] text-[#ffdc8a] font-lato font-semibold select-none max-w-2xl mt-8 overflow-y-hidden text-left"
           >
             <span
-              aria-label={`Generamos: ${Number(energiaAhorradaKWh.toFixed(2)).toLocaleString("es-AR")} kWh`}
+              aria-label={`Generamos: ${Number(totalEnergia.toFixed(2)).toLocaleString("es-AR")} kWh`}
               class="subtitle block text-shadow-xs text-shadow-[#253366]"
             >
               – Generamos
               <strong>
-                {Number(energiaAhorradaKWh.toFixed(2)).toLocaleString("es-AR")} kWh
+                {Number(totalEnergia.toFixed(2)).toLocaleString("es-AR")} kWh
               </strong>
             </span>
 
             <span
-              aria-label={`Ahorramos: $${Number(ahorroPesos.toFixed(2)).toLocaleString("es-AR")}`}
+              aria-label={`Ahorramos: $${Number(totalAhorro.toFixed(2)).toLocaleString("es-AR")}`}
               class="subtitle block mt-2 text-shadow-xs text-shadow-[#253366]"
             >
               – Ahorramos
               <strong>
-                ${Number(ahorroPesos.toFixed(2)).toLocaleString("es-AR")}
+                ${Number(totalAhorro.toFixed(2)).toLocaleString("es-AR")}
               </strong>
             </span>
           </p>
