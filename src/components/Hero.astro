@@ -90,25 +90,24 @@ const energiaAhorradaKWh =
       </div>
 
       <div
-        class="absolute flex flex-col items-center justify-center text-center top-0 left-0 w-full h-full z-100"
+        class="absolute flex gap-6 flex-col items-center justify-around text-center top-1/2 left-1/2 w-full z-100 -translate-x-1/2 -translate-y-1/2"
       >
         <h1
-          class="text-[2.75rem] sm:text-[3.25rem] md:text-[6.75rem] text-[#ffdc8a] font-lato font-bold select-none overflow-y-hidden"
+          class="text-[2.75rem] sm:text-[3.5rem] md:text-[4.75rem] lg:text-[5.25rem] text-[#ffdc8a] font-lato font-bold select-none leading-none"
         >
           <span
-            class="title-1 inline-block leading-none sm:leading-0 tracking-[-0.11rem] md:tracking-[-0.23rem] text-shadow-md text-shadow-[#253366]"
+            class="title-1 tracking-[-0.11rem] md:tracking-[-0.23rem] text-shadow-md text-shadow-[#253366]"
             >Municipalidad de Alberti
           </span>
-        </h1>
+        </h1><h3
+          class="title-2 text-[2rem] sm:text-[2.25rem] md:text-[3.5rem] lg:text-[4rem] text-[#ffdc8a] text-shadow-sm text-shadow-[#253366] font-neuton font-semibold select-none overflow-y-hidden pb-1 leading-8 sm:leading-none"
+        >
+          Soberanía Energética
+        </h3>
 
         <div class="flex flex-col items-center justify-center w-full">
-          <h3
-            class="title-2 text-[2rem] sm:text-[2.25rem] md:text-[4.75rem] text-[#ffdc8a] text-shadow-sm text-shadow-[#253366] font-neuton font-semibold select-none overflow-y-hidden mt-4 md:mt-0"
-          >
-            Soberanía Energética
-          </h3>
           <p
-            class="text-[1.25rem] md:text-[2.75rem] text-[#ffdc8a] font-lato font-semibold select-none max-w-2xl mt-8 overflow-y-hidden text-left"
+            class="text-[1.25rem] md:text-[1.75rem] lg:text-[2rem] text-[#ffdc8a] font-lato font-semibold select-none max-w-2xl text-left"
           >
             <span
               aria-label={`Generamos: ${Number(totalEnergia.toFixed(2)).toLocaleString("es-AR")} kWh`}
@@ -122,7 +121,7 @@ const energiaAhorradaKWh =
 
             <span
               aria-label={`Ahorramos: $${Number(totalAhorro.toFixed(2)).toLocaleString("es-AR")}`}
-              class="subtitle block mt-2 text-shadow-xs text-shadow-[#253366]"
+              class="subtitle block mt-1 text-shadow-xs text-shadow-[#253366]"
             >
               – Ahorramos
               <strong>
@@ -183,10 +182,10 @@ const energiaAhorradaKWh =
   let typeSplit2: any;
   let subtitleSplit: any;
 
-  typeSplit = new SplitText(".title-1", { type: "chars" });
-  typeSplit2 = new SplitText(".title-2", { type: "chars" });
+  typeSplit = new SplitText(".title-1", { type: "words" });
+  typeSplit2 = new SplitText(".title-2", { type: "words" });
   subtitleSplit = new SplitText(".subtitle", { type: "words" });
-  gsap.from(typeSplit.chars, {
+  gsap.from(typeSplit.words, {
     y: "100%",
     opacity: 0,
     duration: 0.6,
@@ -195,7 +194,7 @@ const energiaAhorradaKWh =
     stagger: 0.08,
   });
 
-  gsap.from(typeSplit2.chars, {
+  gsap.from(typeSplit2.words, {
     y: "100%",
     opacity: 0,
     duration: 0.5,
@@ -209,7 +208,7 @@ const energiaAhorradaKWh =
     opacity: 0,
     duration: 0.4,
     ease: "power3.out",
-    delay: 2,
+    delay: 1.6,
     stagger: 0.1,
   });
 

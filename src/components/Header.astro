@@ -10,24 +10,24 @@ import Image from "astro/components/Image.astro";
   class="bg-[#F8DC95CC] text-[#253366] px-3 md:px-6 lg:px-10.75 w-full max-h-[60px] fixed top-0 z-999 border-b overflow-y-clip border-[#FFFFFFB2]"
 >
   <div
-    class="h-full py-2.5 px-0.5 md:px-4 md:py-2 lg:px-5.5 flex items-center justify-between border-x overflow-y-clip border-[#FFFFFFB2]"
+    class="h-full py-3.5 sm:py-2.5 px-0.5 md:px-4 md:py-2 lg:px-5.5 flex items-center justify-between border-x overflow-y-clip border-[#FFFFFFB2]"
   >
     <div class="w-full max-w-5xl mx-auto flex items-center justify-around">
       <a
         class="flex items-center select-none"
         href="https://www.instagram.com/municipalidaddealberti/"
       >
-        <Image
-          src={MuniLogo}
-          alt="Logo Municipalidad de Alberti"
-          width={33}
-          height={46}
-          format="webp"
-          quality={80}
-          loading="eager"
-          decoding="async"
-          class="w-[26px] h-8 md:h-[46px] md:w-[33px]"
-        />
+        <div class="h-8 md:h-[46px] w-auto max-w-[33px]">
+          <Image
+            src={MuniLogo}
+            alt="Logo Municipalidad de Alberti"
+            format="webp"
+            quality={80}
+            loading="eager"
+            decoding="async"
+            class="w-full h-full object-contain"
+          />
+        </div>
 
         <h1
           id="text-icon"
@@ -40,50 +40,46 @@ import Image from "astro/components/Image.astro";
         class="flex items-center select-none"
         href="https://www.edensa.com.ar/"
       >
-        <Image
-          src={EdenLogo}
-          alt="Logo Eden"
-          height={46}
-          widths={[46, 92]}
-          sizes="46px"
-          format="webp"
-          quality={80}
-          decoding="async"
-          class="h-8 w-24 md:h-[46px] md:w-[108px]"
-        />
+        <div class="h-8 md:h-[46px] w-auto max-w-[108px]">
+          <Image
+            src={EdenLogo}
+            alt="Logo Eden"
+            format="webp"
+            quality={80}
+            decoding="async"
+            class="w-full h-full object-contain"
+          />
+        </div>
       </a>
       <a
         class="flex items-center select-none"
         href="https://www.instagram.com/ecoplan.alberti/"
       >
-        <Image
-          src={EcoplanLogo}
-          alt="Logo Ecoplan"
-          height={46}
-          widths={[46, 92]}
-          sizes="46px"
-          format="webp"
-          quality={80}
-          decoding="async"
-          class="h-8 w-16 md:h-[46px] md:w-[92px]"
-        />
+        <div class="h-8 md:h-[46px] w-auto max-w-[92px]">
+          <Image
+            src={EcoplanLogo}
+            alt="Logo Ecoplan"
+            format="webp"
+            quality={80}
+            decoding="async"
+            class="w-full h-full object-contain"
+          />
+        </div>
       </a>
       <a
         class="flex items-center select-none"
         href="https://www.instagram.com/puntodigitalalberti/"
       >
-        <Image
-          src={PuntoLogo}
-          alt="Logo Punto Digital"
-          height={46}
-          widths={[46, 92]}
-          sizes="46px"
-          format="webp"
-          quality={80}
-          decoding="async"
-          class="rounded-full"
-          class="h-8 w-8 md:h-24 md:w-24 rounded-full"
-        />
+        <div class="h-8 w-8 md:h-12 md:w-12">
+          <Image
+            src={PuntoLogo}
+            alt="Logo Punto Digital"
+            format="webp"
+            quality={80}
+            decoding="async"
+            class="w-full h-full object-contain rounded-full"
+          />
+        </div>
       </a>
     </div>
   </div>
