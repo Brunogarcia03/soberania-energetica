@@ -1,6 +1,6 @@
 ---
 const res = await fetch(
-  "https://strapi-production-4f4b.up.railway.app/api/soberania-energeticas?sort=fecha:desc"
+  "https://strapi-production-4f4b.up.railway.app/api/soberania-energeticas?sort=fecha:desc",
 );
 const { data } = await res.json();
 
@@ -162,6 +162,6 @@ const hogaresSuministrados = Math.round(energiaAhorradaKWh / KWH_HOGAR_MES);
         end: "bottom 20%",
         toggleActions: "play reverse play reverse",
       },
-    }
+    },
   );
 </script>
