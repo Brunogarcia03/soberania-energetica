@@ -2,28 +2,35 @@
 const res = await fetch(
   "https://strapi-production-4f4b.up.railway.app/api/soberania-energeticas?sort=fecha:desc",
 );
+
 const { data } = await res.json();
 
-// Tomamos el primero (el más reciente)
-const record = data?.[0];
-
-// Datos base del caso real
-const ahorroPesos = record?.ahorro_pesos ?? 0;
+const KG_CO2_POR_KWH = 0.4507;
+const KG_POR_ARBOL = 1.25;
+const KG_CO2_POR_AUTO = 342;
+const KWH_HOGAR_MES = 883;
 const precioKWh = 209;
-const energiaAhorradaKWh =
-  record?.energia_ahorrada_kwh ?? ahorroPesos / precioKWh; // ≈ 11056.6 kWh
 
-// Factores actualizados a valores locales (Argentina)
-const KG_CO2_POR_KWH = 0.4507; // kg CO₂/kWh
-const KG_POR_ARBOL = 1.25; // kg CO₂ absorbidos por árbol/mes
-const KG_CO2_POR_AUTO = 342; // kg CO₂ emitidos por auto/mes
-const KWH_HOGAR_MES = 883; // consumo anual promedio hogar argentino
+const monthlyMetrics = data.map((item: any) => {
+  const energia = item.energia_ahorrada_kwh ?? item.ahorro_pesos / precioKWh;
 
-// Cálculos
-const kgCO2 = energiaAhorradaKWh * KG_CO2_POR_KWH;
-const arboles = Math.round(kgCO2 / KG_POR_ARBOL);
-const autosFuera = Math.round(kgCO2 / KG_CO2_POR_AUTO);
-const hogaresSuministrados = Math.round(energiaAhorradaKWh / KWH_HOGAR_MES);
+  const kgCO2 = energia * KG_CO2_POR_KWH;
+
+  return {
+    fecha: item.fecha,
+    label: new Date(item.fecha).toLocaleDateString("es-AR", {
+      month: "long",
+      year: "numeric",
+    }),
+    energia,
+    arboles: Math.round(kgCO2 / KG_POR_ARBOL),
+    kgCO2: Number(kgCO2.toFixed(2)),
+    autos: Math.round(kgCO2 / KG_CO2_POR_AUTO),
+    hogares: Math.round(energia / KWH_HOGAR_MES),
+  };
+});
+
+const initial = monthlyMetrics[0];
 ---
 
 <div
@@ -38,21 +45,34 @@ const hogaresSuministrados = Math.round(energiaAhorradaKWh / KWH_HOGAR_MES);
   <p
     class="font-neuton font-normal max-w-[780px] text-center text-white text-[1rem] px-5 pb-5 leading-5 tracking-[0.02rem] md:text-[1.1875rem] md:leading-6.25 md:tracking-[0.02375rem] md:px-11.75 lg:px-4.5"
   >
-    {Number(energiaAhorradaKWh.toFixed(2)).toLocaleString("es-AR")} kWh generados
-    este mes de forma sostenible
+    {initial.energia.toLocaleString("es-AR")} kWh generados este mes de forma sostenible
   </p>
+  <!-- <div
+    class="flex items-center overflow-x-auto gap-x-2 md:gap-x-5 pb-4 pt-1 max-w-3xl px-5"
+  >
+    {
+      monthlyMetrics.map((m: any, index: any) => (
+        <button
+          class="month-btn border border-[#D3D3D380] cursor-pointer text-black text-sm md:text-base transition-colors duration-300 hover:bg-[#D3D3D380] hover:text-white bg-white px-3 py-1 text-nowrap"
+          data-index={index}
+        >
+          {m.label}
+        </button>
+      ))
+    }
+  </div> -->
   <div
     id="datos-ahorro"
     class="w-full border-x lg:border-x-0 border-[#D3D3D380] mt-3.5 md:mt-6"
   >
-    <div class="border-t lg:border-y border-[#D3D3D380]">
+    <div class="border-y border-[#D3D3D380]">
       <div
-        class="mx-auto px-5 min-[350px]:px-[1.175rem] min-[370px]:px-5 py-6 grow flex flex-col relative max-w-5xl border-solid md:border-x md:py-8 lg:py-14 text-white border-[#D3D3D380]"
+        class="mx-auto px-5 min-[350px]:px-[1.175rem] min-[370px]:px-5 py-4 md:py-8 lg:py-14 grow flex flex-col relative max-w-5xl border-solid md:border-x text-white border-[#D3D3D380]"
       >
         <div
           class="grid grid-cols-1 md:grid-cols-4 justify-items-center gap-4 md:gap-8 w-full text-center"
         >
-          <div class="stat flex flex-col items-center justify-center opacity-0">
+          <div class="stat flex flex-col items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="48px"
@@ -66,14 +86,16 @@ const hogaresSuministrados = Math.round(energiaAhorradaKWh / KWH_HOGAR_MES);
             <h3
               class="text-[2rem] md:text-[3rem] font-neuton font-bold leading-none"
             >
-              {arboles.toLocaleString("es-AR")}
+              {initial.arboles.toLocaleString("es-AR")}
             </h3>
-            <p class="text-sm md:text-base mt-2 text-[#D3D3D3]">
-              árboles plantados en total
+            <p class="text-sm md:text-base mt-2 text-[#D3D3D3] leading-5">
+              equivalente a la absorción anual de {
+                initial.arboles.toLocaleString("es-AR")
+              } árboles
             </p>
           </div>
 
-          <div class="stat flex flex-col items-center justify-center opacity-0">
+          <div class="stat flex flex-col items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="48px"
@@ -87,14 +109,15 @@ const hogaresSuministrados = Math.round(energiaAhorradaKWh / KWH_HOGAR_MES);
             <h3
               class="text-[2rem] md:text-[3rem] font-neuton font-bold leading-none"
             >
-              {Number(kgCO2.toFixed(2)).toLocaleString("es-AR")}
+              {initial.kgCO2.toLocaleString("es-AR")}
             </h3>
-            <p class="text-sm md:text-base mt-2 text-[#D3D3D3]">
-              kg de CO₂ evitados
+            <p class="text-sm md:text-base mt-2 text-[#D3D3D3] leading-5">
+              emisiones evitadas de {initial.kgCO2.toLocaleString("es-AR")}kg de
+              CO₂
             </p>
           </div>
 
-          <div class="stat flex flex-col items-center justify-center opacity-0">
+          <div class="stat flex flex-col items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="48px"
@@ -108,14 +131,15 @@ const hogaresSuministrados = Math.round(energiaAhorradaKWh / KWH_HOGAR_MES);
             <h3
               class="text-[2rem] md:text-[3rem] font-neuton font-bold leading-none"
             >
-              {autosFuera.toLocaleString("es-AR")}
+              {initial.autos.toLocaleString("es-AR")}
             </h3>
-            <p class="text-sm md:text-base mt-2 text-[#D3D3D3]">
-              autos fuera de circulación
+            <p class="text-sm md:text-base mt-2 text-[#D3D3D3] leading-5">
+              equivalente a retirar {initial.autos.toLocaleString("es-AR")} autos
+              durante un mes
             </p>
           </div>
 
-          <div class="stat flex flex-col items-center justify-center opacity-0">
+          <div class="stat flex flex-col items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="48px"
@@ -129,39 +153,25 @@ const hogaresSuministrados = Math.round(energiaAhorradaKWh / KWH_HOGAR_MES);
             <h3
               class="text-[2rem] md:text-[3rem] font-neuton font-bold leading-none"
             >
-              {hogaresSuministrados.toLocaleString("es-AR")}
+              {initial.hogares.toLocaleString("es-AR")}
             </h3>
-            <p class="text-sm md:text-base mt-2 text-[#D3D3D3]">
-              hogares con energía mensual
+            <p class="text-sm md:text-base mt-2 text-[#D3D3D3] leading-5">
+              equivalente al consumo anual de {
+                initial.hogares.toLocaleString("es-AR")
+              } hogares
             </p>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <div
+    class="flex items-center justify-center mt-4 pb-4 w-full border-b border-[#D3D3D380]"
+  >
+    <p class="text-sm text-white max-w-2xl mx-auto text-center">
+      Las equivalencias se calculan a partir de factores promedio de emisión
+      (0.4507 kg CO₂/kWh) y estimaciones ambientales de absorción y consumo. Los
+      valores representan comparaciones referenciales.
+    </p>
+  </div>
 </div>
-
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.fromTo(
-    ".stat",
-    { y: 50, opacity: 0 },
-    {
-      y: 0,
-      opacity: 1,
-      duration: 1.2,
-      stagger: 0.25,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: "#datos-ahorro",
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play reverse play reverse",
-      },
-    },
-  );
-</script>
