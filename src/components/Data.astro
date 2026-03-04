@@ -38,7 +38,7 @@ const initial = monthlyMetrics[0];
 >
   <div class="h-px w-[89px] hidden md:block md:mt-11.5 bg-[#D3D3D380]"></div>
   <h2
-    class="font-neuton font-bold text-center text-white uppercase pt-12 md:pt-5.75 text-[1rem] md:text-[1.375rem] pb-3 md:pb-3.25 tracking-[0.1875rem] md:tracking-[0.154375rem] leading-[1.63625rem]"
+    class="font-neuton font-bold text-center text-pretty text-white uppercase pt-12 md:pt-5.75 text-[1rem] md:text-[1.375rem] pb-3 md:pb-3.25 tracking-[0.1875rem] md:tracking-[0.154375rem] leading-[1.63625rem]"
   >
     Datos Clave sobre el Ahorro
   </h2>
@@ -88,7 +88,9 @@ const initial = monthlyMetrics[0];
             >
               {initial.arboles.toLocaleString("es-AR")}
             </h3>
-            <p class="text-sm md:text-base mt-2 text-[#D3D3D3] leading-5">
+            <p
+              class="text-sm md:text-base mt-2 max-w-40 sm:max-w-none text-[#D3D3D3] leading-5"
+            >
               equivalente a la absorción anual de {
                 initial.arboles.toLocaleString("es-AR")
               } árboles
@@ -111,7 +113,9 @@ const initial = monthlyMetrics[0];
             >
               {initial.kgCO2.toLocaleString("es-AR")}
             </h3>
-            <p class="text-sm md:text-base mt-2 text-[#D3D3D3] leading-5">
+            <p
+              class="text-sm md:text-base max-w-40 sm:max-w-none mt-2 text-[#D3D3D3] leading-5"
+            >
               emisiones evitadas de {initial.kgCO2.toLocaleString("es-AR")}kg de
               CO₂
             </p>
@@ -133,7 +137,9 @@ const initial = monthlyMetrics[0];
             >
               {initial.autos.toLocaleString("es-AR")}
             </h3>
-            <p class="text-sm md:text-base mt-2 text-[#D3D3D3] leading-5">
+            <p
+              class="text-sm md:text-base max-w-40 sm:max-w-none mt-2 text-[#D3D3D3] leading-5"
+            >
               equivalente a retirar {initial.autos.toLocaleString("es-AR")} autos
               durante un mes
             </p>
@@ -155,7 +161,9 @@ const initial = monthlyMetrics[0];
             >
               {initial.hogares.toLocaleString("es-AR")}
             </h3>
-            <p class="text-sm md:text-base mt-2 text-[#D3D3D3] leading-5">
+            <p
+              class="text-sm md:text-base max-w-40 sm:max-w-none mt-2 text-[#D3D3D3] leading-5"
+            >
               equivalente al consumo anual de {
                 initial.hogares.toLocaleString("es-AR")
               } hogares
@@ -166,9 +174,9 @@ const initial = monthlyMetrics[0];
     </div>
   </div>
   <div
-    class="flex items-center justify-center mt-4 pb-4 w-full border-b border-[#D3D3D380]"
+    class="flex items-center justify-center mt-5 pb-4 w-full border-b border-[#D3D3D380]"
   >
-    <p class="text-sm text-white max-w-2xl mx-auto text-center">
+    <p class="text-sm text-pretty text-white max-w-2xl mx-auto text-center">
       Las equivalencias se calculan a partir de factores promedio de emisión
       (0.4507 kg CO₂/kWh) y estimaciones ambientales de absorción y consumo. Los
       valores representan comparaciones referenciales.
