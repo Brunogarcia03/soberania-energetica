@@ -174,12 +174,81 @@ const initial = monthlyMetrics[0];
     </div>
   </div>
   <div
-    class="flex items-center justify-center mt-5 pb-4 w-full border-b border-[#D3D3D380]"
+    class="flex flex-col items-center justify-center mt-5 pb-4 w-full border-b border-[#D3D3D380]"
   >
     <p class="text-sm text-pretty text-white max-w-2xl mx-auto text-center">
       Las equivalencias se calculan a partir de factores promedio de emisión
       (0.4507 kg CO₂/kWh) y estimaciones ambientales de absorción y consumo. Los
       valores representan comparaciones referenciales.
     </p>
+    <div
+      class="w-full max-w-6xl mx-auto px-5 mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+    >
+      {
+        monthlyMetrics.slice(0, 4).map((m: any) => (
+          <div class="border border-[#D3D3D380] p-4 text-white flex flex-col gap-3 hover:bg-white/5 transition-colors duration-300">
+            {/* Mes */}
+            <h3 class="font-neuton uppercase tracking-wide text-sm text-[#D3D3D3]">
+              {m.label}
+            </h3>
+
+            {/* Energía */}
+            <div>
+              <p class="text-2xl font-bold leading-none">
+                {m.energia.toLocaleString("es-AR")}
+              </p>
+              <p class="text-xs text-[#D3D3D3]">kWh generados</p>
+            </div>
+
+            {/* CO2 */}
+            <div>
+              <p class="text-lg font-semibold">
+                {m.kgCO2.toLocaleString("es-AR")} kg
+              </p>
+              <p class="text-xs text-[#D3D3D3]">CO₂ evitado</p>
+            </div>
+
+            {/* Equivalencias */}
+            <div class="text-xs text-[#D3D3D3] leading-4 mt-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="12px"
+                viewBox="0 -960 960 960"
+                width="12px"
+                fill="#D3D3D3"
+                class="inline-block"
+              >
+                <path d="M200-80v-80h240v-160h-80q-83 0-141.5-58.5T160-520q0-60 33-110.5t89-73.5q9-75 65.5-125.5T480-880q76 0 132.5 50.5T678-704q56 23 89 73.5T800-520q0 83-58.5 141.5T600-320h-80v160h240v80H200Zm160-320h240q50 0 85-35t35-85q0-36-20.5-66T646-630l-42-18-6-46q-6-45-39.5-75.5T480-800q-45 0-78.5 30.5T362-694l-6 46-42 18q-33 14-53.5 44T240-520q0 50 35 85t85 35Zm120-200Z" />
+              </svg>{" "}
+              {m.arboles} árboles
+              <br />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="12px"
+                viewBox="0 -960 960 960"
+                width="12px"
+                fill="#D3D3D3"
+                class="inline-block"
+              >
+                <path d="M200-204v54q0 12.75-8.62 21.37Q182.75-120 170-120h-20q-12.75 0-21.37-8.63Q120-137.25 120-150v-324l85-256q5-14 16.5-22t26.5-8h464q15 0 26.5 8t16.5 22l85 256v324q0 12.75-8.62 21.37Q822.75-120 810-120h-21q-13 0-21-8.63-8-8.62-8-21.37v-54H200Zm3-330h554l-55-166H258l-55 166Zm-23 60v210-210Zm105.76 160q23.24 0 38.74-15.75Q340-345.5 340-368q0-23.33-15.75-39.67Q308.5-424 286-424q-23.33 0-39.67 16.26Q230-391.47 230-368.24q0 23.24 16.26 38.74 16.27 15.5 39.5 15.5ZM675-314q23.33 0 39.67-15.75Q731-345.5 731-368q0-23.33-16.26-39.67Q698.47-424 675.24-424q-23.24 0-38.74 16.26-15.5 16.27-15.5 39.5 0 23.24 15.75 38.74Q652.5-314 675-314Zm-495 50h600v-210H180v210Z" />
+              </svg>{" "}
+              {m.autos} autos
+              <br />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="12px"
+                width="12px"
+                viewBox="0 -960 960 960"
+                fill="#D3D3D3"
+                class="inline-block"
+              >
+                <path d="M201-160v-392L76-457l-36-47 440-336 178 136v-96h100v172l162 124-37 47-125-96v393H530v-240H430v240H201Zm60-60h109v-240h220v240h108v-378L480-765 261-598v378Zm134-350h170q0-33-25.5-54.5T480-646q-34 0-59.5 21.34T395-570Zm-25 350v-240h220v240-240H370v240Z" />
+              </svg>{" "}
+              {m.hogares} hogares
+            </div>
+          </div>
+        ))
+      }
+    </div>
   </div>
 </div>
