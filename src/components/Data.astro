@@ -1,6 +1,9 @@
 ---
 const res = await fetch(
   "https://strapi-production-4f4b.up.railway.app/api/soberania-energeticas?sort=fecha:desc",
+  {
+    cache: "no-store",
+  },
 );
 
 const { data } = await res.json();
